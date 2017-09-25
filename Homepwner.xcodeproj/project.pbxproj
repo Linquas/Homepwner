@@ -8,24 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		F36DC0D31F78A6CC003D0123 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0D21F78A6CC003D0123 /* AppDelegate.m */; };
-		F36DC0D61F78A6CC003D0123 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0D51F78A6CC003D0123 /* ViewController.m */; };
-		F36DC0D91F78A6CC003D0123 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0D71F78A6CC003D0123 /* Main.storyboard */; };
 		F36DC0DB1F78A6CC003D0123 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0DA1F78A6CC003D0123 /* Assets.xcassets */; };
 		F36DC0DE1F78A6CC003D0123 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0DC1F78A6CC003D0123 /* LaunchScreen.storyboard */; };
 		F36DC0E11F78A6CC003D0123 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0E01F78A6CC003D0123 /* main.m */; };
+		F36DC0E91F78A765003D0123 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0E81F78A765003D0123 /* ItemsViewController.m */; };
+		F36DC0EC1F78A975003D0123 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0EA1F78A974003D0123 /* Item.m */; };
+		F36DC0EF1F78AA1E003D0123 /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0EE1F78AA1E003D0123 /* ItemStore.m */; };
+		F36DC0F11F78B917003D0123 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0F01F78B917003D0123 /* HeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F36DC0CE1F78A6CC003D0123 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36DC0D11F78A6CC003D0123 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F36DC0D21F78A6CC003D0123 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F36DC0D41F78A6CC003D0123 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F36DC0D51F78A6CC003D0123 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F36DC0D81F78A6CC003D0123 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F36DC0DA1F78A6CC003D0123 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F36DC0DD1F78A6CC003D0123 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F36DC0DF1F78A6CC003D0123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36DC0E01F78A6CC003D0123 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F36DC0E71F78A765003D0123 /* ItemsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
+		F36DC0E81F78A765003D0123 /* ItemsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
+		F36DC0EA1F78A974003D0123 /* Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		F36DC0EB1F78A974003D0123 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		F36DC0ED1F78AA1E003D0123 /* ItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemStore.h; sourceTree = "<group>"; };
+		F36DC0EE1F78AA1E003D0123 /* ItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemStore.m; sourceTree = "<group>"; };
+		F36DC0F01F78B917003D0123 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,13 +66,17 @@
 			children = (
 				F36DC0D11F78A6CC003D0123 /* AppDelegate.h */,
 				F36DC0D21F78A6CC003D0123 /* AppDelegate.m */,
-				F36DC0D41F78A6CC003D0123 /* ViewController.h */,
-				F36DC0D51F78A6CC003D0123 /* ViewController.m */,
-				F36DC0D71F78A6CC003D0123 /* Main.storyboard */,
 				F36DC0DA1F78A6CC003D0123 /* Assets.xcassets */,
 				F36DC0DC1F78A6CC003D0123 /* LaunchScreen.storyboard */,
 				F36DC0DF1F78A6CC003D0123 /* Info.plist */,
 				F36DC0E01F78A6CC003D0123 /* main.m */,
+				F36DC0EB1F78A974003D0123 /* Item.h */,
+				F36DC0EA1F78A974003D0123 /* Item.m */,
+				F36DC0E71F78A765003D0123 /* ItemsViewController.h */,
+				F36DC0E81F78A765003D0123 /* ItemsViewController.m */,
+				F36DC0ED1F78AA1E003D0123 /* ItemStore.h */,
+				F36DC0EE1F78AA1E003D0123 /* ItemStore.m */,
+				F36DC0F01F78B917003D0123 /* HeaderView.xib */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -129,9 +139,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36DC0F11F78B917003D0123 /* HeaderView.xib in Resources */,
 				F36DC0DE1F78A6CC003D0123 /* LaunchScreen.storyboard in Resources */,
 				F36DC0DB1F78A6CC003D0123 /* Assets.xcassets in Resources */,
-				F36DC0D91F78A6CC003D0123 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,23 +152,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36DC0D61F78A6CC003D0123 /* ViewController.m in Sources */,
+				F36DC0E91F78A765003D0123 /* ItemsViewController.m in Sources */,
+				F36DC0EC1F78A975003D0123 /* Item.m in Sources */,
 				F36DC0E11F78A6CC003D0123 /* main.m in Sources */,
 				F36DC0D31F78A6CC003D0123 /* AppDelegate.m in Sources */,
+				F36DC0EF1F78AA1E003D0123 /* ItemStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F36DC0D71F78A6CC003D0123 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F36DC0D81F78A6CC003D0123 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F36DC0DC1F78A6CC003D0123 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
