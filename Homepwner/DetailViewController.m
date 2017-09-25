@@ -10,7 +10,7 @@
 #import "Item.h"
 #import "ImageStore.h"
 
-@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
@@ -21,6 +21,7 @@
 
 @implementation DetailViewController
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -43,6 +44,11 @@
     }
     
     self.dateLabel.text = [dateFormatter stringFromDate:item.dateCreated];
+    
+    NSString *imageKey = self.item.itemKey;
+    //Get image for its iamgeview
+    UIImage *imageToDisplay = [[ ImageStore sharedStore] imageForKey:imageKey];
+    self.imageView.image = imageToDisplay;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,7 +66,21 @@
     _item = item;
     self.navigationItem.title = _item.itemName;
 }
+#pragma mark - ImagePicker delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    //Get picked image from info dictionary
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    [[ImageStore sharedStore] setImage:image forKey:self.item.itemKey];
+    self.imageView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+#pragma mark - Actions
 - (IBAction)takePicture:(id)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     
@@ -74,12 +94,8 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    //Get picked image from info dictionary
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    [[ImageStore sharedStore] setImage:image forKey:self.item.itemKey];
-    self.imageView.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
 }
 
 @end

@@ -17,6 +17,7 @@
 
 @implementation ItemsViewController
 
+#pragma mark - Controller life cycle
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
@@ -36,6 +37,7 @@
     return [self init];
 }
 
+#pragma mark - View life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +52,7 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - TableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     NSArray *items = [[ItemStore sharedStore] allItems];
@@ -59,6 +62,7 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - TableView data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[[ItemStore sharedStore] allItems] count];
 }
@@ -85,6 +89,7 @@
     [[ItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
 }
 
+#pragma mark - Actions
 - (IBAction)addNewItem:(id)sender {
     Item *new = [[ItemStore sharedStore] createItem];
     
