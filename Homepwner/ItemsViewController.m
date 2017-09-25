@@ -7,11 +7,11 @@
 //
 
 #import "ItemsViewController.h"
+#import "DetailViewController.h"
 #import "ItemStore.h"
 #import "Item.h"
 
 @interface ItemsViewController ()
-@property (nonatomic, strong) IBOutlet UIView *headerView;
 
 @end
 
@@ -20,7 +20,14 @@
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"Homepwner";
         
+        //create a new  bar button item that will send addNewItem: to VC
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
+        //set this bar item as the right item in the navigation itme
+        navItem.rightBarButtonItem = bbi;
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
 }
@@ -35,8 +42,21 @@
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
-    UIView *header = self.headerView;
-    [self.tableView setTableHeaderView:header];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    NSArray *items = [[ItemStore sharedStore] allItems];
+    Item *selectedItem = items[indexPath.row];
+    detailViewController.item = selectedItem;
+    //push it onto top of the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -76,23 +96,4 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 }
 
-- (IBAction)toggleEditingMode:(id)sender {
-    //if you are currently in editing mode
-    if (self.isEditing) {
-        [sender setTitle:@"Edit"];
-        [self setEditing:NO animated:YES];
-        
-    } else {
-        [sender setTitle:@"Done"];
-        [self setEditing:YES animated:YES];
-    }
-}
-
-- (UIView *)headerView {
-    if (!_headerView) {
-        //Load HeadView.xib
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
-    }
-    return _headerView;
-}
 @end

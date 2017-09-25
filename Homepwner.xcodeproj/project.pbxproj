@@ -14,7 +14,9 @@
 		F36DC0E91F78A765003D0123 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0E81F78A765003D0123 /* ItemsViewController.m */; };
 		F36DC0EC1F78A975003D0123 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0EA1F78A974003D0123 /* Item.m */; };
 		F36DC0EF1F78AA1E003D0123 /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0EE1F78AA1E003D0123 /* ItemStore.m */; };
-		F36DC0F11F78B917003D0123 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0F01F78B917003D0123 /* HeaderView.xib */; };
+		F36DC0F81F78DB2D003D0123 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0F61F78DB2D003D0123 /* DetailViewController.m */; };
+		F36DC0F91F78DB2D003D0123 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F36DC0F71F78DB2D003D0123 /* DetailViewController.xib */; };
+		F36DC0FC1F78F281003D0123 /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F36DC0FB1F78F281003D0123 /* ImageStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +33,11 @@
 		F36DC0EB1F78A974003D0123 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		F36DC0ED1F78AA1E003D0123 /* ItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemStore.h; sourceTree = "<group>"; };
 		F36DC0EE1F78AA1E003D0123 /* ItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemStore.m; sourceTree = "<group>"; };
-		F36DC0F01F78B917003D0123 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		F36DC0F51F78DB2D003D0123 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		F36DC0F61F78DB2D003D0123 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		F36DC0F71F78DB2D003D0123 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		F36DC0FA1F78F281003D0123 /* ImageStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
+		F36DC0FB1F78F281003D0123 /* ImageStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +82,11 @@
 				F36DC0E81F78A765003D0123 /* ItemsViewController.m */,
 				F36DC0ED1F78AA1E003D0123 /* ItemStore.h */,
 				F36DC0EE1F78AA1E003D0123 /* ItemStore.m */,
-				F36DC0F01F78B917003D0123 /* HeaderView.xib */,
+				F36DC0F51F78DB2D003D0123 /* DetailViewController.h */,
+				F36DC0F61F78DB2D003D0123 /* DetailViewController.m */,
+				F36DC0F71F78DB2D003D0123 /* DetailViewController.xib */,
+				F36DC0FA1F78F281003D0123 /* ImageStore.h */,
+				F36DC0FB1F78F281003D0123 /* ImageStore.m */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -139,9 +149,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36DC0F11F78B917003D0123 /* HeaderView.xib in Resources */,
 				F36DC0DE1F78A6CC003D0123 /* LaunchScreen.storyboard in Resources */,
 				F36DC0DB1F78A6CC003D0123 /* Assets.xcassets in Resources */,
+				F36DC0F91F78DB2D003D0123 /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,9 +164,11 @@
 			files = (
 				F36DC0E91F78A765003D0123 /* ItemsViewController.m in Sources */,
 				F36DC0EC1F78A975003D0123 /* Item.m in Sources */,
+				F36DC0FC1F78F281003D0123 /* ImageStore.m in Sources */,
 				F36DC0E11F78A6CC003D0123 /* main.m in Sources */,
 				F36DC0D31F78A6CC003D0123 /* AppDelegate.m in Sources */,
 				F36DC0EF1F78AA1E003D0123 /* ItemStore.m in Sources */,
+				F36DC0F81F78DB2D003D0123 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
