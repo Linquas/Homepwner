@@ -37,7 +37,13 @@
 - (instancetype)initPrivate {
     self = [super init];
     if (self) {
-        _privateItems = [[NSMutableArray alloc]init];
+        // load items from filesystem
+        NSString *path = [self itemArchivePath];
+        _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        if (!_privateItems) {
+            _privateItems = [[NSMutableArray alloc] init];
+        }
     }
     return self;
 }
@@ -56,6 +62,19 @@
     NSString *key = item.itemKey;
     [[ImageStore sharedStore] deleteImageForKey:key];
     [self.privateItems removeObjectIdenticalTo:item];
+}
+
+- (NSString*) itemArchivePath {
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //get one document directory from the list
+    NSString *documentDirectory = [documentDirectories firstObject];
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+- (BOOL)saveChanges {
+    NSString *path = [self itemArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:path];
 }
 
 - (void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
