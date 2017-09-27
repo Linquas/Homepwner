@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 @end
 
@@ -26,6 +27,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.valueField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    UIImageView *image = [[UIImageView alloc] initWithImage:nil];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    image.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:image];
+    self.imageView = image;
+    
+    //set vertical priorities to be less than other subviews
+    [self.imageView setContentHuggingPriority:200 forAxis:UILayoutConstraintAxisVertical];
+    [self.imageView setContentCompressionResistancePriority:200 forAxis:UILayoutConstraintAxisVertical];
+    
+    NSDictionary *nameMap = @{@"imageView" : self.imageView, @"dateLabel": self.dateLabel, @"toolBar": self.toolBar};
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|" options:0 metrics:nil views:nameMap];
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[dateLabel]-[imageView]-[toolBar]" options:0 metrics:nil views:nameMap];
+    [self.view addConstraints:horizontalConstraints];
+    [self.view addConstraints:verticalConstraints];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
