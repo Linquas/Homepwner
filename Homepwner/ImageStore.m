@@ -20,9 +20,11 @@
 + (instancetype)sharedStore {
     static ImageStore *sharedStore = nil;
     
-    if (!sharedStore) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedStore = [[ImageStore alloc] initPrivate];
-    }
+    });
+
     return sharedStore;
 }
 
