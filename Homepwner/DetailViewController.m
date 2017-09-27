@@ -9,14 +9,18 @@
 #import "DetailViewController.h"
 #import "Item.h"
 #import "ImageStore.h"
+#import "ItemStore.h"
 
-@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *caremaButton;
+@property (strong, nonatomic) UIPopoverPresentationController *imagePickerPoover;
+
 
 @end
 
@@ -47,6 +51,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    UIInterfaceOrientation io = [[UIApplication sharedApplication] statusBarOrientation];
+    [self prepareViewsForOrientation:io];
+    
     Item *item = self.item;
     
     self.nameField.text = item.itemName;
@@ -108,11 +115,74 @@
     }
     imagePicker.delegate = self;
     //Place image picker VC on the screen
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        //create a new poover controller  only on ipad
+        imagePicker.modalPresentationStyle = UIModalPresentationPopover;
+        
+        self.imagePickerPoover = imagePicker.popoverPresentationController;
+        self.imagePickerPoover.delegate = self;
+        self.imagePickerPoover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        self.imagePickerPoover.barButtonItem = sender;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    } else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
 }
 
 - (IBAction)backgroundTapped:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (void)prepareViewsForOrientation:(UIInterfaceOrientation)orientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        return;
+    }
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        self.imageView.hidden = YES;
+        self.caremaButton.enabled = NO;
+    } else {
+        self.imageView.hidden = NO;
+        self.caremaButton.enabled = YES;
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self prepareViewsForOrientation:toInterfaceOrientation];
+}
+#pragma mark - popoverController delegate
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    NSLog(@"User dismissed popover");
+    self.imagePickerPoover = nil;
+}
+
+- (instancetype)initForNewItem:(BOOL)isNew {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        if (isNew) {
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
+            self.navigationItem.rightBarButtonItem = doneItem;
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+            self.navigationItem.leftBarButtonItem = cancelItem;
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    @throw [NSException exceptionWithName:@"Wrong initializer" reason:@"Use initForNewItem" userInfo:nil];
+    return nil;
+}
+
+- (void)save:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dissmissBlock];
+}
+
+- (void)cancel:(id)sender {
+    //if user cancelled, then remove the item from the store
+    [[ItemStore sharedStore] removeItem:self.item];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dissmissBlock];
 }
 
 @end

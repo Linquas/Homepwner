@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
             <connections>
+                <outlet property="caremaButton" destination="paP-Wh-FWo" id="oS1-Ln-8pK"/>
                 <outlet property="dateLabel" destination="fnK-Jd-BrQ" id="4tZ-yR-cU6"/>
                 <outlet property="nameField" destination="vaK-LM-nWY" id="aJ5-Od-sGh"/>
                 <outlet property="serialNumberField" destination="Hw1-HP-5Tb" id="FPN-Iw-jUm"/>

@@ -12,5 +12,6 @@
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) Item *item;
-
+- (instancetype)initForNewItem:(BOOL)isNew;
+@property (nonatomic, copy) void (^dissmissBlock)(void);
 @end
